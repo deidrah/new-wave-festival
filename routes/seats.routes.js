@@ -35,8 +35,12 @@ router.route('/seats/:id').put((req, res) => {
         client: req.body.client,
         email: req.body.email,
     });
-    db.seats[index] = updateContent;
-    res.json(message);
+    if (db.seats.some(item => item.seat === newItem.seat && item.day === newItem.day)) {
+        res.status(409).json({message: "The slot is already taken..."});
+    } else {
+        db.seats.push(newItem);
+        res.json(message);
+    }
 });
 
 router.route('/seats/:id').delete((req, res) => {
