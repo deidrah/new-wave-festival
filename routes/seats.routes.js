@@ -40,6 +40,7 @@ router.route('/seats/:id').put((req, res) => {
     } else {
         db.seats.push(newItem);
         res.json(message);
+        req.io.emit("seatsUpdated", seats);
     }
 });
 

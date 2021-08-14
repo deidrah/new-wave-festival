@@ -13,10 +13,15 @@ const server = app.listen(process.env.PORT || 8000, () => {
   console.log("Server is running on port: 8000");
 });
 
-const io = socket(server);
+const io = socket(server, { cors: true });
 
 io.on("connection", (socket) => {
   console.log("New client! Its id – " + socket.id);
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
 });
 
 app.use(express.urlencoded({ extended: false }));
