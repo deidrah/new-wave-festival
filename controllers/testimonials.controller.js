@@ -11,6 +11,7 @@ exports.getAll = async (req, res) => {
 exports.getRandom = async (req, res) => {
   try {
     const count = await Testimonial.countDocuments();
+    console.log('vo',count);
     const rand = Math.floor(Math.random() * count);
     const testimonial = await Testimonial.findOne().skip(rand);
     if (!testimonial) res.status(404).json({ message: "Not found" });
