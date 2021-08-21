@@ -15,9 +15,13 @@ const server = app.listen(process.env.PORT || 8000, () => {
 });
 
 const io = socket(server, { cors: true });
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  "mongodb+srv://dstasik:KqBsrgyQuOACJFUP@cluster0.ppfch.mongodb.net/NewWaveDB?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 const db = mongoose.connection;
 
 db.once('open', () => {
@@ -38,9 +42,9 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '/client/build')));
 
-app.use('/api/', concertsRoutes);
-app.use('/api/', seatsRoutes);
-app.use('/api/', testimonialsRoutes);
+app.use('/api', concertsRoutes);
+app.use('/api', seatsRoutes);
+app.use('/api', testimonialsRoutes);
 
 
 app.get('*', (req, res) => {
