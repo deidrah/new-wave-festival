@@ -8,3 +8,5 @@ router.get("/seats/:id", SeatsController.getId);
 router.post("/seats", SeatsController.post);
 router.put("/seats/:id", SeatsController.putId);
 router.delete("/seats/:id", SeatsController.deleteId);
+
+module.exports = router;

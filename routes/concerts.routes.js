@@ -8,3 +8,5 @@ router.get("/concerts/:id", ConcertController.getId);
 router.post("/concerts", ConcertController.post);
 router.put("/concerts/:id", ConcertController.putId);
 router.delete("/concerts/:id", ConcertController.deleteId);
+
+module.exports = router;
