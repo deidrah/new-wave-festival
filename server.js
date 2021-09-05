@@ -18,7 +18,7 @@ const io = socket(server, { cors: true });
 
 const dbURI =
   process.env.NODE_ENV === "production"
-    ? "mongodb+srv://dstasik:KqBsrgyQuOACJFUP@cluster0.ppfch.mongodb.net/NewWaveDB?retryWrites=true&w=majority"
+    ? "mongodb+srv://${process.env.userName}:${process.env.appName}@cluster0.ppfch.mongodb.net/NewWaveDB?retryWrites=true&w=majority"
     : "mongodb://localhost:27017/NewWaveDB";
 
 mongoose.connect(dbURI, {
